@@ -1,10 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     const Plant = sequelize.define("plant", {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        primaryKey: true
-      },
+      // id: {
+      //   type: DataTypes.INTEGER,
+      //   primaryKey: true
+      // },
       commonName: {
         type: DataTypes.STRING,
         allowNull: false

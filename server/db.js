@@ -1,7 +1,14 @@
 const Sequelize = require('sequelize');
+
+// DB Local
+// const sequelize = new Sequelize(process.env.NAME, 'postgres', process.env.PASS, {
+//     host: 'localhost',
+//     dialect: 'postgres'
+// });
+
+// DB Deploy
 const sequelize = new Sequelize(process.env.DATABASE_URL,{
-    
-    dialect:'postgres'
+   dialect:'postgres'
 });
 // -----------------------------------------------------
 

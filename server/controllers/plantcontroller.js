@@ -12,14 +12,14 @@ const Plant = require("../db").import("../models/plant");
 // - Plant Create ---------------------------------------------
 router.post("/create", validateSession, (req, res) => {
   const plantEntry = {
-    id: req.body.plant.id,
+    // id: req.body.plant.id,
     commonName: req.body.plant.commonName,
     family: req.body.plant.family,
     familyCommonName: req.body.plant.familyCommonName,
     scientificName: req.body.plant.scientificName,
     genus: req.body.plant.genus,
-    description: req.body.plant.description,
     image: req.body.plant.image,
+    description: req.body.plant.description,
     notes: req.body.plant.notes,
     owner: req.user.id,
   }
