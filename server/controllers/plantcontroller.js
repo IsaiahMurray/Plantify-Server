@@ -14,6 +14,7 @@ router.post("/create", validateSession, (req, res) => {
   const plantEntry = {
     id: req.body.plant.id,
     commonName: req.body.plant.commonName,
+    family: req.body.plant.family,
     familyName: req.body.plant.familyName,
     scientificName: req.body.plant.scientificName,
     genus: req.body.plant.genus,
