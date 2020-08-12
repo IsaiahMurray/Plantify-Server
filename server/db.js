@@ -1,13 +1,13 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('Plantify', 'postgres', 'Letmein8762',{
-    host:'localhost',
+const sequelize = new Sequelize(process.env.DATABASE_URL,{
+    
     dialect:'postgres'
 });
 // -----------------------------------------------------
 
 sequelize.authenticate().then(
     function(){
-        console.log('connected through Plantify postgres database');
+        console.log('connected through plantify-server postgres database');
     },
     function(err){
         console.log(err)
