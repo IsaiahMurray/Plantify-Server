@@ -1,19 +1,19 @@
 let express = require("express");
 let router = express.Router();
-let User = require("../db").import("../models/user");
+let User = require("../db").import("../models/user");     // Question 2----user model is imported
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 // ---------------------------------------------------
 
 // -User Signup -------------------------------------
-router.post("/create", function (req, res) {
-  User.create({
-    email: req.body.user.email,
+router.post("/create", function (req, res) {                
+  User.create({                                             // Question 2----user model is being use to create a new user in the database
+    email: req.body.user.email,                             // ---- while encrypting and hashing the password
     password: bcrypt.hashSync(req.body.user.password, 13)
   })
     .then(function createSuccess(user) {
-      let token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
-        expiresIn: 60 * 60 * 24,
+      let token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {   // Question 3---- Token is being created and only allowing it to
+        expiresIn: 60 * 60 * 24,                                                           //---- be used for 24 hours
       });
       
       res.json({

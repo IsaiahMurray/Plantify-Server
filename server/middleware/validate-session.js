@@ -1,29 +1,29 @@
 //
-const jwt = require("jsonwebtoken");
-const User = require("../db").import("../models/user");
+const jwt = require("jsonwebtoken");                          // Question 1---- Import JSON Webtoken
+const User = require("../db").import("../models/user");       // 1---- Import user model and require link to database 
 
 const validateSession = (req, res, next) => {
-  if(req.method ===`OPTIONS`){
-    next()
+  if(req.method ==='OPTIONS'){                                // 1---- Bypasses CORS -----
+    next();
 }else{
-  const token = req.headers.authorization;
+  const token = req.headers.authorization;                     // 1---- create token variable/constant
 
-  if (!token) {
+  if (!token) {                                                // 1---- If there is no token, throw an error
     return res.status(403).send({ auth: false, message: "No token provided" });
   } else {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decodeToken) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decodeToken) => {    
       if (!err && decodeToken) {
-        User.findOne({
+        User.findOne({                                            // 1---- If everything is good, find a user and validate them
           where: {
             id: decodeToken.id,
           },
         })
           .then((user) => {
             if (!user) throw err;
-            req.user = user;
+            req.user = user;                                        // 1---- if there is no user, pass over
             return next();
           })
-          .catch((err) => next(err));
+          .catch((err) => next(err));                                // 1---- catch any errors and return not authorized with no validation
       }else{
       req.errors = err;
       return res.status(500).send("Not Authorized");}
@@ -31,4 +31,4 @@ const validateSession = (req, res, next) => {
   }
 }
 };
-module.exports = validateSession;
+module.exports = validateSession;                                 // 1---- export the code

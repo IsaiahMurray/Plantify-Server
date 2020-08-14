@@ -45,11 +45,11 @@ router.post("/save", validateSession, (req, res) => {
 
 // - Get All Plants ---------------------------------------------
 
-// router.get('/', (req, res)=>{
-//     Plant.findAll()
-//     .then(plants=>res.status(200).json(plants))
-//     .catch(err => res.status(500).json({error:err}))
-// });
+router.get('/', (req, res)=>{
+    Plant.findAll()
+    .then(plants=>res.status(200).json(plants))
+    .catch(err => res.status(500).json({error:err}))
+});
 
 // - Get Plants by User -------------------------------------------
 
